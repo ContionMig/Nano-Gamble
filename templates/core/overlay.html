@@ -1,0 +1,48 @@
+<div class="qr_code_box hidden-mobile-small" style="max-width: 250px;">
+    <div style="color: #000000; background: #FFFFFF;" class="no-radius input-group-text text-center">
+        <div class="justify-content-center align-items-center">
+
+            <div style="display: block; padding-bottom: 5px;">
+                <span class="qr_code_text text-center">DEPOSIT</span>
+            </div>
+
+            <div style="display: block; padding-bottom: 10px;">
+                <img src="{{ qrcode('nano:' + wallet, box_size=5) }}">
+            </div>
+
+            <div class="qr_address_box">
+                <span class="qr_address_box_text" id="wallet_address">{{ wallet }}</span>
+                <div class="qr_address_box_copy">
+                    <svg id="copy" stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" color="#1D1E26" height="24" width="24" xmlns="http://www.w3.org/2000/svg" style="color: rgb(29, 30, 38);">
+                        <g>
+                            <path fill="none" d="M0 0h24v24H0z"></path>
+                            <path d="M7 6V3a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1h-3v3c0 .552-.45 1-1.007 1H4.007A1.001 1.001 0 0 1 3 21l.003-14c0-.552.45-1 1.007-1H7zM5.003 8L5 20h10V8H5.003zM9 6h8v10h2V4H9v2z"></path>
+                        </g>
+                    </svg>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="d-flex justify-content-center align-items-center" style="margin-top: 10px">
+        <button id="refresh_request" style="width: 240px;"><i class="fas fa-sync" style="float: left; padding-top: 5px;"></i> Refresh <span></span></button>
+    </div>
+
+    <div class="d-flex justify-content-center align-items-center" style="margin-top: 10px">
+        <button id="withdraw_request" style="width: 240px;"><i class="fas fa-sign-out-alt" style="float: left; padding-top: 5px;"></i> Withdraw <span></span></button>
+    </div>
+
+    <div class="d-flex justify-content-center align-items-center" style="margin-top: 10px">
+        <button id="faucet_request" style="width: 240px;"><i class="fas fa-tint" style="float: left; padding-top: 5px;"></i> Faucet <span></span> <span id="faucet_timer"></span></button>
+    </div>
+
+</div>
+
+<div class="online_info hidden-mobile-small" style="margin-bottom: 1rem">
+    <div style="padding-top: 1rem;">
+        <span style="display: block;" class="side_text_info price_tag">1 NANO = $-.--</span>
+        <span style="display: block;" class="side_text_info curr_online"><span style="color: green;">0</span> Online Users</span>
+        <span style="display: block;" class="side_text_info">Inspired By <span class="nano_square">NanoSquare</span></span>
+    </div>
+</div>

@@ -1,0 +1,385 @@
+
+* {
+    --white: #ffffff;
+    --purple: #C678DD;
+    --red: rgba(218,73,49,255);
+    --green: rgba(44,171,64,255);
+    --yellow: #E5C07A;
+    --blue: #63AEEF;
+    --blue2: #56B6C1;
+    --blackLight: #272C32;
+    --black: #272C32;
+    --whiteRGB: 255 255 255;
+    --purpleRGB: 198 120 221;
+    --redRGB: 223 107 116;
+    --greenRGB: 151 195 121;
+    --yellowRGB: 229 192 122;
+    --blueRGB: 99 174 239;
+    --blue2RGB: 86 182 193;
+    --blackLightRGB: 39 44 50;
+    --blackRGB: 39 44 50;
+    --darkgrey: #1D1D1D;
+    --darkwhite:  rgb(255 255 255/80%);
+}
+
+html {
+  font-family: "Space Mono", monospace;
+}
+
+body {
+    font-family: "Space Mono", monospace;
+  background: linear-gradient(#1D1D1D,#1D1D1D,#1D1D1D);
+  display: grid;
+  grid-template-columns: 1fr;
+  height: 100vh;
+  overflow: hidden;
+  width: 100%;
+}
+
+canvas {
+   position: absolute;
+   left: 0;
+   top: 0;
+   z - index: -1;
+}
+
+button {
+  align-self: center;
+  background-color: #efefef;
+  border: none;
+  color: #333;
+  font-size: 1.25rem;
+  font-weight: 700;
+  justify-self: center;
+  padding: 0.5rem 1rem;
+}
+button:hover {
+  cursor: pointer;
+}
+
+.small_img {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.square_img {
+    height: 75px;
+    width: 75px;
+}
+
+.square_box {
+    border-radius: 0px;
+    background: green;
+}
+
+.no-radius {
+    border-radius:0px !important;
+}
+
+.balance_box {
+    outline: 0;
+    background-color: rgba(0,0,0,0.1);
+    border-width: 3px;
+    outline-color: #FFFFFF;
+    box-shadow: none;
+    border-style:solid;
+    color: #FFFFFF;
+}
+
+.bal_num {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 22px;
+}
+
+.bal_round {
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.bal_actual {
+    font-family: 'Roboto Mono', monospace;
+    color: grey;
+    font-size: 16px;
+}
+
+.side_text_info {
+    font-family: "Space Mono",monospace;
+    color: rgb(255 255 255/60%);
+    font-size: 14px;
+    padding-left: 1rem;
+}
+
+.nano_square {
+    font-family: "Space Mono",monospace;
+    color: rgb(255 255 100/60%);
+    font-size: 14px;
+}
+
+
+.balance_small {
+    text-align: center;
+    color: #000000;
+    font-weight: 600;
+    font-size: 16px;
+}
+
+.side_text {
+    color: #FFFFFF;
+    font-family: 'Roboto Mono', monospace;
+    font-weight: 600;
+    font-size: 22px;
+    text-align: center;
+}
+
+.col_title {
+    text-align: center;
+    color: #FFFFFF;
+    border-top: 2px solid white;
+    border-bottom: 2px solid white;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    padding: 5px;
+    max-height: 40px;
+    height: 40px;
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.chat_title {
+    text-align: center;
+    color: #FFFFFF;
+    margin-bottom: 10px;
+    padding: 5px;
+    max-height: 50px;
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.block {
+    background: linear-gradient(#123347, #0D1117, #223347)
+    border: 2px solid #E0E0E0;
+    cursor: pointer;
+    margin: 5px;
+}
+
+.block.active {
+    border: 2px solid #FBC02D;
+    box-shadow: 0 4px 8px 0 #FBC02D
+}
+
+.image {
+    width: 100px;
+    height: 100px;
+    background-color: #FFFFFF;
+}
+
+.prod-name {
+    text-align: center;
+    font-weight: 600;
+    font-size: 16px;
+    color: #FFFFFF;
+    padding-bottom: 5px;
+    margin: 0px;
+}
+
+.game_history_amount {
+    font-family: "Space Mono", monospace;
+    font-size: 15px;
+}
+
+.game_won {
+    color: var(--green);
+}
+
+.game_lost {
+    color: var(--red);
+}
+
+.game_won_back {
+    background-color: var(--green);
+}
+
+.game_lost_back {
+    background-color: var(--red);
+}
+
+
+.game_neutral {
+    color: var(--white);
+}
+
+.newli {
+    display: none;
+}
+
+.game_history {
+    margin: 5px;
+}
+
+.div_under {
+    width:100px;
+    border-top:1px solid green;
+    height:1px;
+    position:absolute;
+    left:50px
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: rgba(0, 0, 0, 0.4);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #dfdfdf;
+  border-radius: 10px;
+}
+
+.side_col {
+    border-right: 2px solid white;
+    border-left: 2px solid white;
+    height: 100vh;
+    word-wrap:
+    break-word;
+}
+
+.game_outcome_text {
+    color: #000000;
+    background-color: #FFFFFF;
+    font-weight: 600;
+    font-size: 20px;
+    width:100%
+}
+
+.username_icon {
+    color: #FFFFFF;
+    float: right;
+    padding-top: 5px;
+
+    background-color: transparent;
+    background-repeat: no-repeat;
+    border: none;
+    cursor: pointer;
+    overflow: hidden;
+    outline: none;
+
+}
+
+.qr_code_text {
+    font-size: 25px;
+    font-weight: 700;
+    margin-bottom: 3px;
+}
+
+.qr_code_wallet {
+    color: #FFFFFF;
+    padding: 2px;
+    margin-bottom: 3px;
+    font-size: 12px;
+    font-weight: 400;
+    word-break: break-all;
+}
+
+.qr_code_box {
+    color: white;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 240px;
+}
+
+.online_info {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.qr_address_box {
+    display: flex;
+    align-items: center;
+}
+
+.qr_address_box_text {
+    font-size: 12px;
+    font-weight: 400;
+    white-space: -moz-pre-wrap; /* Mozilla */
+    white-space: -hp-pre-wrap; /* HP printers */
+    white-space: -o-pre-wrap; /* Opera 7 */
+    white-space: -pre-wrap; /* Opera 4-6 */
+    white-space: pre-wrap; /* CSS 2.1 */
+    white-space: pre-line; /* CSS 3 (and 2.1 as well, actually) */
+    word-wrap: break-word; /* IE */
+    word-break: break-all;
+}
+
+.qr_address_box_copy {
+    width: 24px;
+    margin-left: 5px;
+    cursor: pointer;
+}
+
+.tabs_store {
+    color: white;
+    margin-bottom: -1px;
+    background: 0 0;
+}
+
+.active {
+    color: green;
+}
+
+.chat_messages {
+    display:inline-block;
+
+    max-width: -webkit-calc(100% - 55px);
+    max-width:    -moz-calc(100% - 55px);
+    max-width:         calc(100% - 55px);
+}
+
+.payout {
+    font-family: "Space Mono",monospace;
+    color: rgb(255 255 100/60%);;
+    font-size: 26px;
+    padding-right: 1rem;
+}
+
+.payout_multi {
+    font-family: "Space Mono",monospace;
+    color: rgb(50 255 50/60%);;
+    font-size: 26px;
+}
+
+.payout_equal {
+    font-family: "Space Mono",monospace;
+    color: rgb(255 255 255/60%);;
+    font-size: 26px;
+    padding-right: 1rem;
+    padding-left: 1rem;
+}
+
+.game_info_right {
+    color: white;
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    display: flex;
+    flex-direction: column;
+}
+
+.game_info_left {
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    display: flex;
+    flex-direction: column;
+}

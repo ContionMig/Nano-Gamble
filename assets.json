@@ -1,0 +1,86 @@
+{
+  "dice": {
+    "default": {
+      "price": 0.0
+    },
+    "red_corner": {
+      "price": 0.001
+    },
+    "triangle": {
+      "price": 0.001
+    },
+    "flower": {
+      "price": 0.01
+    },
+    "boat": {
+      "price": 0.01
+    },
+    "fishy": {
+      "price": 0.01
+    },
+    "neon": {
+      "price": 0.1
+    },
+    "invert": {
+      "price": 0.1
+    },
+    "skull": {
+      "price": 0.1
+    }
+  },
+  "color": {
+    "default": {
+      "hex": "#808080",
+      "price": 0.0
+    },
+    "salmon_pink": {
+      "hex": "#FF9AA2",
+      "price": 0.01
+    },
+    "pale_orange": {
+      "hex": "#FFDAC1",
+      "price": 0.01
+    },
+    "merigold": {
+      "hex": "#FCAE1E",
+      "price": 0.01
+    },
+    "fire": {
+      "hex": "#DD571C",
+      "price": 0.01
+    },
+    "cantaloupe": {
+      "hex": "#FDA172",
+      "price": 0.01
+    },
+    "cotton_candy": {
+      "hex": "#FEC8D8",
+      "price": 0.01
+    },
+    "pastel_violet": {
+      "hex": "#D291BC",
+      "price": 0.01
+    },
+    "lavender_purple": {
+      "hex": "#957DAD",
+      "price": 0.01
+    },
+    "magic_mint": {
+      "hex": "#B5EAD7",
+      "price": 0.01
+    },
+    "periwinkle": {
+      "hex": "#C7CEEA",
+      "price": 0.01
+    },
+    "blue": {
+      "hex": "#3944BC",
+      "price": 0.01
+    },
+    "sky_blue": {
+      "hex": "#63C5DA",
+      "price": 0.01
+    }
+
+  }
+}

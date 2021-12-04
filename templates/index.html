@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Dice Roll</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css' ) }}" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/include/input.css' ) }}" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/include/popup.css' ) }}" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/games/dice.css' ) }}" />
+
+    {% include "include/fonts.html" %}
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA==" crossorigin="anonymous"
+      referrerpolicy="no-referrer" />
+
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js" integrity="sha512-q/dWJ3kcmjBLU4Qc47E4A9kTB4m3wuTY7vkFJDTZKjTs8jhyGQnaUrxa0Ytd0ssMZhbNua9hE+E7Qv1j+DyZwA==" crossorigin="anonymous"></script>
+
+
+    <script src="{{ url_for('static', filename='js/helper.js' ) }}"></script>
+    <script src="{{ url_for('static', filename='js/websocket.js' ) }}"></script>
+    <script src="{{ url_for('static', filename='js/include/alert.js' ) }}"></script>
+    <script src="{{ url_for('static', filename='js/include/popup.js' ) }}"></script>
+    <script src="{{ url_for('static', filename='js/include/chat.js' ) }}"></script>
+
+    <script src="{{ url_for('static', filename='js/games/dice.js' ) }}"></script>
+    <script src="{{ url_for('static', filename='js/games/stack.js' ) }}"></script>
+    <script src="{{ url_for('static', filename='js/gambling.js' ) }}"></script>
+
+    <style>
+        @media (max-width: 767px) {
+            .hidden-mobile-small {
+                display: none;
+            }
+        }
+
+        @media (max-width: 960px) {
+            .hidden-mobile-medium {
+                display: none;
+            }
+        }
+
+        @media (max-width: 1500px) {
+            .hidden-mobile-large {
+                display: none;
+            }
+        }
+
+
+        .nav-tabs {
+            border-bottom: none;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    {% include "include/alert.html" %}
+
+
+    <div class="row">
+
+        <!-- CHAT -->
+        <div class="hidden-mobile-medium side_col col-3" style="width:20%; max-width:20%;">
+
+            <div style="height: 18vh; max-height: 18vh;">
+                <div class="d-flex justify-content-center align-items-center">
+                    <Span class="col_title" style="border-bottom: 2px solid white; margin: 12px;">Games</Span>
+                </div>
+
+                <div id="games" class="chat_history_box" style="overflow: hidden; overflow-y: scroll;padding-left:5px; height: 9.5vh; max-height: 9.5vh;">
+
+                    <div class="row game_list" style="padding: 10px;">
+
+                        <div class="col">
+                            <div class="d-flex justify-content-start">
+                                <span class="game_history_amount game_won" style="color: #ffffff;">Higher Or Lower</span>
+                            </div>
+                        </div>
+
+                        <div class="col">
+
+                            <div class="d-flex justify-content-end">
+                                <div id="play_higherlower" class="show-click" style="background-color: #FFFFFF; width: 75px;">
+                                    <div class="d-flex justify-content-center align-items-center">
+                                        <span style="color: var(--green); font-weight: 700;">PLAY</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="row game_list" style="padding: 10px;">
+
+                        <div class="col">
+                            <div class="d-flex justify-content-start">
+                                <span class="game_history_amount game_won" style="color: #ffffff;">Payout Stack</span>
+                            </div>
+                        </div>
+
+                        <div class="col">
+
+                            <div class="d-flex justify-content-end">
+                                <div id="play_payoutstack" class="show-click" style="background-color: #FFFFFF; width: 75px;">
+                                    <div class="d-flex justify-content-center align-items-center">
+                                        <span style="color: var(--green); font-weight: 700;">PLAY</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div style="height: 20vh; max-height: 20vh;">
+                <div class="d-flex justify-content-center align-items-center">
+                    <Span class="col_title" style="border-bottom: 2px solid white; margin: 12px;">Leaderboard</Span>
+                </div>
+
+                <div id="leader_board" class="chat_history_box" style="overflow: hidden; overflow-y: scroll;padding-left:5px; height: 13vh; max-height: 13vh;">
+
+                </div>
+
+            </div>
+
+
+            <div>
+
+                <div class="d-flex justify-content-center align-items-center">
+                    <Span class="col_title" style="border-bottom: 2px solid white; margin: 12px;">Global Chat <button id="change_username" class="fas fa-user username_icon"></button></Span>
+                </div>
+
+                <div id="chat_history" class="chat_history_box" style="overflow: auto; height: 47vh; max-height: 47vh; ">
+                </div>
+
+            </div>
+
+            <div style="margin: 10px; height: 15vh; max-height: 15vh;">
+                <div class="chat_input_container">
+                    <input id="chat" type="text" value="">
+                    <button id="chat_button">SEND</button>
+                </div>
+            </div>
+
+
+        </div>
+
+        <!-- DICE GAME -->
+        <div class="col" style="height: 100vh; max-height: 100vh; position: relative;">
+
+            <div class="d-flex justify-content-center">
+                    <div>
+
+                        <div class="input-group mb-2" style="padding: 1rem;">
+
+                            <div class="no-radius input-group-prepend">
+                                <div style="height: 50px; color: #000000; background: #FFFFFF" class="no-radius input-group-text text-center">
+                                    <div class="d-flex justify-content-center">
+                                        <span class="balance_small text-center">BALANCE</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="no-radius input-group-prepend">
+                                <div id="balance" style="height: 50px; color: #FFFFFF; background: rgba(0,0,0,0.1)" class="no-radius input-group-text">
+                                    <div class="bal_num">0</div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+            <div id="higher_lower_game">
+
+                <div class="d-flex justify-content-center align-items-center">
+
+                    <div>
+
+                        <div class="d-flex justify-content-center align-items-center" style="margin-bottom: 1rem">
+                            <button id="game_outcome" class="no-click game_outcome_text">PICK HIGHER OR LOWER</button>
+                        </div>
+
+                        <div class="h-100 row" style="padding: 2rem;">
+
+                            <div class="col">
+
+                                <div class="d-flex justify-content-center align-items-center">
+
+                                    <!-- Dice -->
+                                    <div>
+
+                                        <div class="d-flex justify-content-center">
+                                            <span class="side_text text-center">YOU</span>
+                                        </div>
+
+                                        <div class="dice__scene" style="margin: 1rem;">
+                                            <div id="dice__cube" class="show-front">
+                                                <div class="user_front dice__side dice__side--front"></div>
+                                                <div class="user_back dice__side dice__side--back"></div>
+                                                <div class="user_right dice__side dice__side--right"></div>
+                                                <div class="user_left dice__side dice__side--left"></div>
+                                                <div class="user_top dice__side dice__side--top"></div>
+                                                <div class="user_bottom dice__side dice__side--bottom"></div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <div class="col">
+
+                                <div class="d-flex justify-content-center align-items-center">
+
+                                    <div>
+
+                                        <div class="d-flex justify-content-center">
+                                            <span class="side_text text-center">BOT</span>
+                                        </div>
+
+                                        <div class="dice__scene" style="margin: 1rem;">
+                                            <div id="dice__cube_bot" class="show-front">
+                                                <div id="bot_front" class="dice__side dice__side--front"></div>
+                                                <div id="bot_back" class="dice__side dice__side--back"></div>
+                                                <div id="bot_right" class="dice__side dice__side--right"></div>
+                                                <div id="bot_left" class="dice__side dice__side--left"></div>
+                                                <div id="bot_top" class="dice__side dice__side--top"></div>
+                                                <div id="bot_bottom" class="dice__side dice__side--bottom"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div>
+
+                            <div class=" h-100 d-flex justify-content-center align-items-center">
+                                <span class="display_text">BET </span>
+                                <input class="input_amount bal_num" type="number" id="bet_amount" name="bet_amount" value="0.01" step="0.01"><br><br>
+                            </div>
+                        </div>
+
+                        <div class=" h-100 d-flex justify-content-center align-items-center">
+                            <button class="text_button" id="half">½</button>
+                            <button class="text_button" id="double">x2</button>
+                            <button class="text_button" id="max">max</button>
+                            <button class="text_button" id="min">min</button>
+                        </div>
+
+                        <div class=" h-100 d-flex justify-content-center align-items-center">
+                            <span class="payout">Payout </span>
+                            <span id="payout_multi" class="payout_multi">x0.00</span>
+                            <span class="payout_equal">=</span>
+                            <span id="payout_nano" class="payout_multi">0.0000000</span>
+                        </div>
+
+                        <div class="row" style="padding: 2rem;">
+
+                            <div class="col">
+                                <div>
+                                    <button class="lower_button" id="lower">Lower</button>
+                                </div>
+                            </div>
+
+                            <div class="col">
+                                <div>
+                                    <button class="higher_button" id="higher">Higher</button>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div id="payout_stack_game" style="display: none;">
+
+                <div class="d-flex justify-content-center align-items-center" style="margin-bottom: 1rem">
+                    <button id="stack_rules" style="max-width: 400px" class="no-click game_outcome_text">YOU LOSE IF YOU ROLL A <span style="color: #FF0000">ONE</span></button>
+                </div>
+
+                <div class="col" style="padding: 2rem;">
+                        <div class="d-flex justify-content-center align-items-center">
+
+                            <!-- Dice -->
+                            <div>
+
+                                <div class="d-flex justify-content-center">
+                                    <span class="side_text text-center">YOU</span>
+                                </div>
+
+                                <div class="dice__scene" style="margin: 1rem;">
+                                    <div id="dice__cube_stack" class="show-front">
+                                        <div class="user_front dice__side dice__side--front"></div>
+                                        <div class="user_back dice__side dice__side--back"></div>
+                                        <div class="user_right dice__side dice__side--right"></div>
+                                        <div class="user_left dice__side dice__side--left"></div>
+                                        <div class="user_top dice__side dice__side--top"></div>
+                                        <div class="user_bottom dice__side dice__side--bottom"></div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+
+
+            </div>
+
+            {% include "core/overlay.html" %}
+
+        </div>
+
+        <!-- RIGHT COL -->
+        <div class="hidden-mobile-large side_col col-3" style="width:20%; max-width:20%;">
+
+            <div>
+                <nav>
+                    <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                        <button class="tabs_store active" id="nav-skin-tab" data-bs-toggle="tab" data-bs-target="#store-skin" type="button" role="tab" aria-controls="nav-home" aria-selected="true">Skins</button>
+                        <button class="tabs_store" id="nav-color-tab" data-bs-toggle="tab" data-bs-target="#store-color" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Chat Color</button>
+                    </div>
+                </nav>
+                <div class="tab-content" id="nav-tabContent" style="overflow-x: hidden; overflow-y: scroll; height: 35vh; max-height: 35vh;">
+
+                    <div class="tab-pane fade show active" id="store-skin" role="tabpanel" aria-labelledby="nav-skin-tab">
+                        <div class="row" style="">
+
+                            <div class="row">
+
+                                {%for i in range(0, user_dice|len)%}
+                                <div class="col">
+                                    <div class="d-flex justify-content-center align-items-center">
+                                        <div class="block text-center">
+                                            <p class="prod-name">{{ user_dice[i]|title }}</p> <img style="border: 1px solid" class="image" src="/static/assets/images/die/{{user_dice[i]}}/dice-1.png">
+                                            <div style="padding-top: 10px;"><button class="use_dice use_button" dice="{{ user_dice[i] }}">Use</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                {%endfor%}
+
+                                {%for i in range(0, not_owned_dice|len)%}
+                                <div class="col">
+
+                                    <div class="block text-center">
+                                        <p class="prod-name">{{ not_owned_dice[i]|title }}</p> <img style="border: 1px solid" class="image" src="/static/assets/images/die/{{not_owned_dice[i]}}/dice-1.png">
+                                        <div style="padding-top: 10px;">
+                                            <button class="buy_dice buy_button" dice="{{ not_owned_dice[i] }}">{{ not_owned_dice[i]|die_price }} {% include "other/nano.html" %}</button>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                {%endfor%}
+
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="tab-pane fade" id="store-color" role="tabpanel" aria-labelledby="nav-color-tab">
+                        <div class="row" style="">
+
+                            <div class="row">
+
+                                {%for i in range(0, user_color|len)%}
+                                <div class="col">
+                                    <div class="d-flex justify-content-center align-items-center">
+                                        <div class="block text-center">
+                                            <p class="prod-name">{{ user_color[i]|title }}</p>
+                                            <div class="d-flex justify-content-center align-items-center">
+                                                <div style="width:100px; height:100px; background: {{ user_color[i]|color_hex }}; "></div>
+                                            </div>
+                                            <div style="padding-top: 10px;">
+                                                <button class="use_color use_button" color="{{ user_color[i] }}">Use</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                {%endfor%}
+
+                                {%for i in range(0, not_owned_color|len)%}
+                                <div class="col">
+
+                                    <div class="block text-center">
+                                        <p class="prod-name">{{ not_owned_color[i]|title }}</p>
+                                        <div class="d-flex justify-content-center align-items-center">
+                                            <div style="width:100px; height:100px; background: {{ not_owned_color[i]|color_hex }}; "></div>
+                                        </div>
+                                        <div style="padding-top: 10px;">
+                                            <button class="buy_color buy_button" color="{{ not_owned_color[i] }}">{{ not_owned_color[i]|color_price }} {% include "other/nano.html" %}</button>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                {%endfor%}
+
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="d-flex justify-content-center align-items-center">
+                <Span class="col_title">Game History</Span>
+            </div>
+
+            <div class="row" style="overflow-y: scroll; max-height: 20vh; height: 20vh;">
+                <div id="game_history"></div>
+            </div>
+
+            <div class="d-flex justify-content-center align-items-center">
+                <Span class="col_title">Your Games</Span>
+            </div>
+
+            <div class="row" style="overflow-y: scroll; max-height: 20vh;">
+                <div id="local_history"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+
+</body>
+
+<footer>
+    {% include "include/audio.html" %}
+</footer>
+
+</html>
