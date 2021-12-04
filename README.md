@@ -11,17 +11,17 @@
 - Recently Games ( Both Local & Other Players )
 
 # Monetizable
-There are skins that users can purchase, the administrators can easily add new skins through the `assets.json`. Other than the skins, there is also the chat colors that users can purchase. All of this can be set through the `assets.json`. 
+There are skins that users can purchase, the administrators can easily add new skins through the `assets.json`. Other than the skins, there are also chat colors that users can purchase. All of this can be set through the `assets.json`. 
 
 # Games
-There are currently only one game that is playable however, i have made it so that you can add multiple games without having much of a headache. There is a spot on the top left which allows the players to switch between the games that are on the website
+There are currently only one game that is playable however, i have made it so that you can add multiple games without having much of a headache. There is a spot on the top left that allows the players to switch between the games that are on the website
 
 ### Higher or Lower
-Its a pretty basic game that i coded in, it just involves choosing between higher or lower. Betting against a bot, whichever option the user lands on gives out a payout. Since it's not a 50/50, the payout is slightly higher than something like a coinflip. The dice also gets animated when rolling and the user is able to change skins if needed.
+It's a pretty basic game that i coded in, it just involves choosing between higher or lower. Betting against a bot, whichever option the user lands on gives out a payout. Since it's not a 50/50, the payout is slightly higher than something like a coin flip. The dice also get animated when rolling and the user is able to change skins if needed.
 
 # TO-DO
 - More Games
-- Adding actual withdrawl and depiost
+- Adding actual withdrawal and deposit
 
 # Modules
 ```
