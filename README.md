@@ -5,8 +5,6 @@
 
 ![main_gig](https://github.com/ContionMig/Nano-Gamble/blob/main/screens/2021-12-04%2010-02-17.gif)
 
-Millin Injector offers many features which can aid in creating usermode cheats. Its meant to be light weight and allow users to view things  such as loaded modules, imports and other smaller things
-
 # Screenshots
 ![main](https://github.com/ContionMig/Nano-Gamble/blob/main/screens/main.png)
 
