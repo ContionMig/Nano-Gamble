@@ -1,4 +1,4 @@
-# Nano Gambler
+# Nano Gamble
 [[My Website]](https://mitsuzi.xyz/)
 
 ![main_gig](https://github.com/ContionMig/Nano-Gamble/blob/main/screens/2021-12-04%2010-02-17.gif)
